@@ -130,8 +130,8 @@ class Solicitudes_model extends CI_Model {
         $this->db->trans_begin();
 		$mensaje = array();
 
-		if(date("H") >= 17){
-            $mensaje[0]["mensaje"] = "No se permite generar solicitudes despues de la 5:00 P.M.";
+		if(date("H") >= 18){ //permitir guardar hasta las 6 de la tarde
+            $mensaje[0]["mensaje"] = "No se permite generar solicitudes despues de la 6:00 P.M.";
 				$mensaje[0]["tipo"] = "error";
 				echo json_encode($mensaje);
         }else{
@@ -143,9 +143,9 @@ class Solicitudes_model extends CI_Model {
 										and IdArea = '".$this->session->userdata("idArea")."'
 										and Prioridad = '".$enc[6]."' ");
 		if($enc[6] == "2"){
-			if($valida->result_array()[0]["prioridad"] >= 4){
+			if($valida->result_array()[0]["prioridad"] >= 6){
 				$banderaPrio = true;
-				$mensaje[0]["mensaje"] = "Solo puede crear 4 solictudes con este nivel de prioridad. 
+				$mensaje[0]["mensaje"] = "Solo puede crear 6 solictudes con este nivel de prioridad. 
 										Ya ha excedido la cantidad permitida de solicitudes con nivel de prioridad Alta. 
 										Debe esperar que el personal de compras cierre al menos una solicitud con este nivel
 										para poder generar una nueva";
@@ -155,9 +155,9 @@ class Solicitudes_model extends CI_Model {
 				$banderaPrio = false;
 			}
 		}else if($enc[6] == "3"){
-			if($valida->result_array()[0]["prioridad"] >= 2) {
+			if($valida->result_array()[0]["prioridad"] >= 4) {
 				$banderaPrio = true;
-				$mensaje[0]["mensaje"] = "Solo puede crear 2 solictudes con este nivel de prioridad. 
+				$mensaje[0]["mensaje"] = "Solo puede crear 4 solictudes con este nivel de prioridad. 
 				Ya ha excedido la cantidad permitida de solicitudes con nivel de prioridad Urgente. 
 				Debe esperar que el personal de compras cierre al menos una solicitud con este nivel
 				para poder generar una nueva.";
@@ -232,6 +232,7 @@ class Solicitudes_model extends CI_Model {
 							"CantidadAut" => $cantJefe,
 							"DescripcionArticulo" => $obj[3],
 							"EstadoAutorizado" => $enc[5],
+							"ImagenReferencia" => ($obj[4])
 						);
 						$guardarDet = $this->db->insert("DetalleSolicitud", $insertDet);
 						if ($guardarDet) {

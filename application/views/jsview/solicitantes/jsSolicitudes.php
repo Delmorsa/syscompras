@@ -78,7 +78,8 @@
                 { data: "UnidadMedida"},
                 { data: "CantidadAut"},
                 { data: "DescripcionArticulo"},
-                { data: "estadoAut"}
+                { data: "estadoAut"},
+				{ data: "ImagenReferencia"}
             ],
 		"lengthMenu": [
 				[5, 10, 25, 50, 100, -1],

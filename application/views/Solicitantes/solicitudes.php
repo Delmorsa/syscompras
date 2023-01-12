@@ -145,6 +145,7 @@
 															<th>Cantidad <br> Autorizada</th>
 															<th>Articulo</th>
 															<th>Autorizacion</th>
+															<th>Ref.</th>
 														</tr>
 													</thead>
 													<tbody>

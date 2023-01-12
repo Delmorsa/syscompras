@@ -3,6 +3,16 @@
 		let contador  = 0;
 		$("#multiple").imageuploadify();
 		$("#btnAddArt").click(function () {
+			let array = new Array(), i = 0;
+			$(".imageuploadify-container img").each(function(){
+				//console.log($(this).attr("src"));
+				array[i] = `<div class="imgTabla symbol symbol-circle symbol-50px overflow-hidden">
+									<div class="symbol-label">
+										<img src="${$(this).attr("src")}" alt="Referencia" class="w-100 ">
+									  </div>
+								 </div>`;
+				i++;
+			});
 			let cantidad = 0,
 				umedida = "",
 				cantaut = 0,
@@ -24,53 +34,61 @@
 					}
 				});
 			} else {
+				if(array.length <= 2){
+					let t = $("#tblArticulos").DataTable({
+						"paging": false,
+						"order": false,
+						"info": false,
+						"destroy": true,
+						"scrollY": "300px",
+						"scrollCollapse": true
+					});
 
-				let t = $("#tblArticulos").DataTable({
-					"paging": false,
-					"order": false,
-					"info": false,
-					"destroy": true,
-					"scrollY": "300px",
-					"scrollCollapse": true
-				});
+					t.row.add([
+						Number(cantidad),
+						umedida,
+						Number(cantaut),
+						descArt,
+						array.join(' ')
+					]).draw(false);
 
-				t.row.add([
-					Number(cantidad),
-					umedida,
-					Number(cantaut),
-					descArt,
-					`<div class="symbol symbol-circle symbol-50px overflow-hidden">
-									<div class="symbol-label">
-										<img src="${$(".imageuploadify-container img").attr("src")}" alt="Referencia" class="w-100 imgTabla${contador}">
-									  </div>
-								 </div>`
-
-				]).draw(false);
-
-				$("#cantidad").val("").focus();
-				//$("#umedida").val("");
-				$("#cantaut").val("");
-				$("#descArt").val("");
-				$(".imageuploadify-container").remove();
+					$("#cantidad").val("").focus();
+					//$("#umedida").val("");
+					$("#cantaut").val("");
+					$("#descArt").val("");
+					$(".imageuploadify-container").remove();
+					contador++;
+				}else{
+					Swal.fire({
+						text: "Solo se puede agregar como máximo dos imagenes de referencia.",
+						icon: "warning",
+						buttonsStyling: false,
+						confirmButtonText: "Cerrar",
+						allowOutsideClick: false,
+						customClass: {
+							confirmButton: "btn btn-primary"
+						}
+					});
+				}
 			}
-			contador++;
+		});
+
+		$("body").on("click", "tr", function () {
+			$(this).toggleClass("selected");
+			if ($(this).hasClass("selected")) {
+				$("#btnSaveSolic").hide();
+			} else {
+				$("#btnSaveSolic").show();
+			}
+		});
+
+		$("#btnDelete").click(function () {
+			let table = $("#tblArticulos").DataTable();
+			table.row(".selected").remove().draw(false);
+			$("#btnSaveSolic").show();
 		});
 	});
 
-$("body").on("click", "tr", function () {
-	$(this).toggleClass("selected");
-	if ($(this).hasClass("selected")) {
-		$("#btnSaveSolic").hide();
-	} else {
-		$("#btnSaveSolic").show();
-	}
-});
-
-$("#btnDelete").click(function () {
-	let table = $("#tblArticulos").DataTable();
-	table.row(".selected").remove().draw(false);
-	$("#btnSaveSolic").show();
-});
 
 $("#btnSaveSolic").click(function () {
 	let tipo = "",
@@ -183,12 +201,12 @@ $("#btnSaveSolic").click(function () {
 			array[i][1] = datos[1];
 			array[i][2] = datos[2];
 			array[i][3] = datos[3];
-			array[i][4] = $(".imgTabla"+i+"").attr("src");
+			array[i][4] = datos[4];//$(".imgTabla").attr("src");
 			i++;
 		});
 
-		console.log(array);
-		/*if ($("#idjefe").val() != "") {
+		//console.log(JSON.stringify(array));
+		if ($("#idjefe").val() != "") {
 			estado = "P";
 			$("#loading").modal("show");
 			Swal.fire({
@@ -279,7 +297,7 @@ $("#btnSaveSolic").click(function () {
 							});
 					}
 				});
-		}*/
+		}
 	}
 });
 

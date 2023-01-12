@@ -319,6 +319,7 @@ class Solicitudes_controller extends CI_Controller {
             $array["CantidadAut"] = $key["CantidadAut"];
             $array["DescripcionArticulo"] = $key["DescripcionArticulo"];
             $array["estadoAut"] = $estadoAut;
+			$array["ImagenReferencia"] = $key["ImagenReferencia"];
             //onclick='baja(".'"'.$key["IdArea"].'","'.$key["Estado"].'"'.")'
             $datos[] = $array;
         }
