@@ -707,7 +707,7 @@ class Solicitudes_model extends CI_Model {
         TipoSolicitud,FechaSolicitud,DescripcionSolicitud,FechaCrea,Prioridad FROM Solicitudes WHERE IdSolicitud = '".$idSolicitud."' ");
 
         $detalle = $this->db->query("SELECT IdDetallesSolicitud,IdSolicitud,CantidadSolicitud,UnidadMedida,
-                                    CantidadAut,DescripcionArticulo FROM DetalleSolicitud WHERE IdSolicitud = '".$idSolicitud."' 
+                                    CantidadAut,DescripcionArticulo,ImagenReferencia FROM DetalleSolicitud WHERE IdSolicitud = '".$idSolicitud."' 
                                     and EstadoAutorizado <> 'I'");
 
         if($encabezado->num_rows()>0){
@@ -732,6 +732,7 @@ class Solicitudes_model extends CI_Model {
                     $jsondet[$idet]["UnidadMedida"] = $key["UnidadMedida"];
                     $jsondet[$idet]["CantidadAut"] = $key["CantidadAut"];
                     $jsondet[$idet]["DescripcionArticulo"] = $key["DescripcionArticulo"];
+					$jsondet[$idet]["ImagenReferencia"] = $key["ImagenReferencia"];
                     $idet++;
                 }
             }

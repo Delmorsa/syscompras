@@ -162,6 +162,7 @@
 															<th>Cantidad <br> Autorizada</th>
 															<th>Articulo</th>
 															<th>Autorizacion</th>
+															<th>Ref.</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -176,6 +177,7 @@
 															<th>Cantidad <br> Autorizada</th>
 															<th>Articulo</th>
 															<th>Autorizacion</th>
+															<th>Ref</th>
                                                             <th class="w-10px pe-2">
                                                                 Todos
                                                                 <span class="badge badge-circle ms-2">

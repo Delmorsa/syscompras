@@ -332,6 +332,7 @@
                                                                         <th>Unidad Medida</th>
                                                                         <th>Cantidad Autorizada</th>
                                                                         <th>Descripcion</th>
+																		<th>Referencia</th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>

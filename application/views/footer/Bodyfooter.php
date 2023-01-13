@@ -61,6 +61,7 @@
 <script src="<?php echo base_url()?>/assets/js/fileup.js"></script>
 <script src="<?php echo base_url()?>/assets/js/webix.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/nav.js?v=46"></script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/js/magnificPopUp.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url()?>assets/js/pivot.js"></script>
 
 <!--end::Page Custom Javascript-->

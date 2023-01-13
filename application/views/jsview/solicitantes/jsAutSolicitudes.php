@@ -82,7 +82,8 @@
                 { data: "UnidadMedida"},
                 { data: "CantidadAut"},
                 { data: "DescripcionArticulo"},
-                { data: "estadoAut"}
+                { data: "estadoAut"},
+				{ data: "ImagenReferencia"}
             ],
 		"lengthMenu": [
 				[5, 10, 25, 50, 100, -1],
@@ -104,6 +105,32 @@
 													'</svg>',
                 "loadingRecords": "",
 			    "processing": "<div class='text-center'>Procesando datos  <i><img width='30px' src='<?php echo base_url()?>assets/img/loading.gif'></i></div>",
+			},
+			"initComplete": function(settings, json) {
+				$(".imgTabla .symbol-label img").each(function () {
+					let currentImage = $(this);
+					currentImage.wrap("<a class='image-link' href='"+currentImage.attr("src")+"'></a>");
+				});
+				$(".image-link").magnificPopup({
+					type: 'image',
+					gallery: {
+						enabled: true
+					},
+					zoom: {
+						enabled: true, // By default it's false, so don't forget to enable it
+
+						duration: 300,
+						easing: 'ease-in-out',
+						opener: function(openerElement) {
+							return openerElement.is('img') ? openerElement : openerElement.find('img');
+						}
+					},
+					/*callbacks: {
+						open: function() {
+							$("#modalSolicitud").modal("hide");
+						}
+					}*/
+				});
 			},
 			"dom":
 				"<'row'" +
@@ -146,13 +173,40 @@
 			"url": "getSolicitudesAutDetAjax"+"/"+idsolicitud,
 			"type": "POST"
 		},
+			"initComplete": function(settings, json) {
+				$(".imgTabla .symbol-label img").each(function () {
+					let currentImage = $(this);
+					currentImage.wrap("<a class='image-link' href='"+currentImage.attr("src")+"'></a>");
+				});
+				$(".image-link").magnificPopup({
+					type: 'image',
+					gallery: {
+						enabled: true
+					},
+					zoom: {
+						enabled: true, // By default it's false, so don't forget to enable it
+
+						duration: 300,
+						easing: 'ease-in-out',
+						opener: function(openerElement) {
+							return openerElement.is('img') ? openerElement : openerElement.find('img');
+						}
+					},
+					/*callbacks: {
+						open: function() {
+							$("#modalSolicitud").modal("hide");
+						}
+					}*/
+				});
+			},
         columns: [
                 { data: "CantidadSolicitud"},
                 { data: "UnidadMedida"},
                 { data: "CantidadAut"},
                 { data: "DescripcionArticulo"},
                 { data: "estadoAut"},
-                { data: "Acciones"}
+				{ data: "ImagenReferencia"},
+				{ data: "Acciones"}
             ]
 		});
     }

@@ -247,6 +247,7 @@ class Solicitudes_controller extends CI_Controller {
             $array["estadoAct"] = $estadoAct;
             $array["estadoAut"] = $estadoAut;
 
+
              if($key["Estado"] == "N"){
                 $array["Opciones"] = "
                     <div class='text-center'>
@@ -373,6 +374,7 @@ class Solicitudes_controller extends CI_Controller {
                                       <span id="badge'.$key["IdDetallesSolicitud"].'" style="display:none;" class="badge badge-danger badge-valida">cantidad no permitida</span>';
             $array["DescripcionArticulo"] = $key["DescripcionArticulo"];
             $array["estadoAut"] = $estadoAut;
+			$array["ImagenReferencia"] = $key["ImagenReferencia"];
             $array["Acciones"] = '<div class="form-check form-check-sm form-check-custom form-check-solid">
                                     <input id="chk'.$key["IdDetallesSolicitud"].'" class="form-check-input check" type="checkbox" value="" />
                                 </div>';

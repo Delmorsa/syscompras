@@ -21,6 +21,7 @@
 		<!--<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/flexmonster.css">-->
 		<link rel="stylesheet" href="<?php echo base_url()?>assets/css/webix.css" type="text/css" media="screen" charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/app.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/magnificPopUp.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/pivot.css" />
 		<!--end::Global Stylesheets Bundle-->
 
@@ -87,6 +88,15 @@
 			    max-width: 500px;
 			    margin: 1.75rem auto;
 				 z-index: 1000000;
+			}
+
+
+			.mfp-wrap{
+				z-index: 1200 !important;
+			}
+
+			.mfp-bg{
+				z-index: 1200 !important;
 			}
     
   </style>

@@ -564,7 +564,8 @@
                 { data: "UnidadMedida"},
                 { data: "CantidadAut"},
                 { data: "DescripcionArticulo"},
-                { data: "estadoAut"}
+                { data: "estadoAut"},
+				{ data: "ImagenReferencia"}
             ],
 		"lengthMenu": [
 				[5, 10, 25, 50, 100, -1],
@@ -598,7 +599,33 @@
 				"<'row'" +
 				"<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
 				"<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-				">"
+				">",
+			"initComplete": function(settings, json) {
+				$(".imgTabla .symbol-label img").each(function () {
+					let currentImage = $(this);
+					currentImage.wrap("<a class='image-link' href='"+currentImage.attr("src")+"'></a>");
+				});
+				$(".image-link").magnificPopup({
+					type: 'image',
+					gallery: {
+						enabled: true
+					},
+					zoom: {
+						enabled: true, // By default it's false, so don't forget to enable it
+
+						duration: 300,
+						easing: 'ease-in-out',
+						opener: function(openerElement) {
+							return openerElement.is('img') ? openerElement : openerElement.find('img');
+						}
+					},
+					/*callbacks: {
+						open: function() {
+							$("#modalSolicitud").modal("hide");
+						}
+					}*/
+				});
+			}
 		});
     }
 

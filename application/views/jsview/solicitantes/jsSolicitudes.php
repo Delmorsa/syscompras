@@ -102,6 +102,32 @@
                 "loadingRecords": "",
 			    "processing": "<div class='text-center'>Procesando datos  <i><img width='30px' src='<?php echo base_url()?>assets/img/loading.gif'></i></div>",
 			},
+			"initComplete": function(settings, json) {
+				$(".imgTabla .symbol-label img").each(function () {
+					let currentImage = $(this);
+					currentImage.wrap("<a class='image-link' href='"+currentImage.attr("src")+"'></a>");
+				});
+				$(".image-link").magnificPopup({
+					type: 'image',
+					gallery: {
+						enabled: true
+					},
+					zoom: {
+						enabled: true, // By default it's false, so don't forget to enable it
+
+						duration: 300,
+						easing: 'ease-in-out',
+						opener: function(openerElement) {
+							return openerElement.is('img') ? openerElement : openerElement.find('img');
+						}
+					},
+					/*callbacks: {
+						open: function() {
+							$("#modalSolicitud").modal("hide");
+						}
+					}*/
+				});
+			},
 			"dom":
 				"<'row'" +
 				"<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +

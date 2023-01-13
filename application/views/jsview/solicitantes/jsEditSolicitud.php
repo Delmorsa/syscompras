@@ -64,6 +64,7 @@ $(document).ready(function () {
                             <td>${key.UnidadMedida}</td>
                             <td>${key.CantidadAut}</td>
                             <td>${key.DescripcionArticulo}</td>
+							<td>${key.ImagenReferencia}</td>
                         </tr>
                     `);
                   });  
